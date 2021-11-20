@@ -87,6 +87,19 @@
     </section>
   </main>
 
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "9a686450d69c491b9e928e6795489941"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+
+  TrackJS.track('Testing TrackJS!');
+
+</script>
+                        
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -102,6 +115,93 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    class NewError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "Custom Error";
+      }
+    }
+
+    errorBtns[0].addEventListener('click', () => {
+      console.log('Console Log');
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error('Console Error');
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.count('Console Count');
+    });
+
+    errorBtns[3].addEventLIstener('click', () => {
+      console.warn('Console Warn');
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      let x = 3; let y = 2; let reason = '3 is greater than 2';
+      console.assert(x < y, {x, y, reason});
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(document.body);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(document.head);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group('Console Group Begin');
+      console.info('Console Info');
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd('Console Group End');
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table([{button: 0, functionality: 'Console Log'}, {button:1, functionality: 'Console Error'}, 
+                      {button:2, functionality: 'Console Count'}]);
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time();
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd();
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      let func = () => {console.log('Console Trace'); console.trace()};
+      func();
+    });
+
+    errorBtns[14].addEventListener('click', () => {
+      globalError();
+    });
+
+    try{
+      this.newError();
+    } catch(err) {
+      console.log(err.message);
+    }
+
+
+    try{
+      console.log(output);
+    } catch(err){
+      throw new NewError("weird input");
+    } finally{
+      console.log("NewError Call");
+    }
+
   </script>
 </body>
 
